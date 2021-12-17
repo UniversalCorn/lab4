@@ -1,12 +1,15 @@
 package eventloop
 
-import "fmt"
+import (
+	"fmt"
+
+	engine "github.com/UniversalCorn/lab4/commands"
+)
 
 type EventLoop struct {
-	queue *Queue
-
-	stop bool
-	stopSignal chan struct{}
+	queue      *Queue
+	isStop     bool
+	stopSignal chan bool
 }
 
 func (e *EventLoop) Start() {
@@ -14,20 +17,20 @@ func (e *EventLoop) Start() {
 		just for debug
 	*/
 	fmt.Println("EVENTLOOP STARTED")
-	e.queue = &Queue{ signal: make(chan struct{}) }
-	e.stopSignal = make(chan struct{})
+	e.queue = &Queue{}
+	e.stopSignal = make(chan bool, 1)
 
 	go func() {
-		for !e.stop || !e.queue.empty() {
+		for !e.isStop || !e.queue.empty() {
 			command := e.queue.pop()
 			command.Execute(e)
 		}
-		e.stopSignal <- struct{}{}
+		e.stopSignal <- true
 	}()
 }
 
-func (e *EventLoop) Post(command Command, isInner bool) {
-	if !e.stop {
+func (e *EventLoop) Post(command engine.Command, isInner bool) {
+	if !e.isStop {
 		e.queue.push(command)
 	} else if isInner {
 		e.Start()
@@ -37,12 +40,12 @@ func (e *EventLoop) Post(command Command, isInner bool) {
 }
 
 func (e *EventLoop) AwaitFinish() {
-	e.Post(CommandFunc(func(h Handler) {
-		e.stop = true
+	e.Post(engine.CommandFunc(func(h engine.Handler) {
+		e.isStop = true
 	}), false)
-	<- e.stopSignal
+	<-e.stopSignal
 	/*
 		just for debug
-	 */
+	*/
 	fmt.Println("EVENTLOOP STOPPED")
 }

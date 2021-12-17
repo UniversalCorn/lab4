@@ -2,35 +2,24 @@ package eventloop
 
 import (
 	"sync"
+
+	engine "github.com/UniversalCorn/lab4/commands"
 )
 
 type Queue struct {
 	sync.Mutex
 
-	commands []Command
-
-	signal chan struct{}
-	waited bool
+	commands []engine.Command
 }
 
-func (q *Queue) push(command Command) {
+func (q *Queue) push(command engine.Command) {
 	q.Lock()
 	defer q.Unlock()
 
 	q.commands = append(q.commands, command)
-	if q.waited {
-		q.waited = false
-		q.signal <- struct{}{}
-	}
 }
 
-func (q *Queue) pop() Command {
-	if q.empty() {
-		q.Lock()
-		q.waited = true
-		q.Unlock()
-		<- q.signal
-	}
+func (q *Queue) pop() engine.Command {
 	q.Lock()
 	defer q.Unlock()
 
