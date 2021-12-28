@@ -86,7 +86,7 @@ func BenchmarkPostfixToInfix(b *testing.B) {
 
 ![Graph1](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph1.jpg)
 
-![Graph2]((https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph2.jpg)
+![Graph2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph2.jpg)
 
 Існують точки, особливо на другому графіку, у яких помітно, що наступне значення може бути меншим за попереднє, що обумовлено додатковим навантаженням на обчислювальні ресурси, але в цьому графік іде прямолінійно вгору
 
