@@ -41,6 +41,7 @@
 
 Наведений код запускає функцію 20 разів, передаючи рядок щоразу більшого розміру.
 
+```go
 package lab2
 
 import (
@@ -65,6 +66,7 @@ func BenchmarkPostfixToInfix(b *testing.B) {
 		})
 	}
 }
+```
 
 ---
 
