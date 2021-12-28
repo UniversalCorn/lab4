@@ -34,3 +34,58 @@
 ---
 
 ## 2 робота
+
+Варіант №8: Перетворити префіксний вираз у постфіксний
+
+У даній роботі запускається функція перетворення з даними щоразу більшого розміру, щоб отримати бенчмарк, що демонструє лінійний час виконання.
+
+Наведений код запускає функцію 20 разів, передаючи рядок щоразу більшого розміру.
+
+package lab2
+
+import (
+	"fmt"
+	"strings"
+	"testing"
+)
+
+var cntRes string
+var err error
+
+func BenchmarkPostfixToInfix(b *testing.B) {
+	const baseLen = 1000
+
+	for i := 0; i < 20; i++ {
+		l := baseLen * (i + 1)
+
+		input := strings.Repeat("123 22.828 - 54 * ", l)
+
+		b.Run(fmt.Sprintf("len=%d", l), func(b *testing.B) {
+			cntRes, err = PostfixToInfix(input)
+		})
+	}
+}
+
+---
+
+Тут ми n разів повторюємо початковий рядок, передаючи його до функції перетворення:
+
+![Output1](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/output1.jpg)
+
+---
+
+Після запуску бенчмарка отримуємо такі значення:
+
+![Output2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/output2.jpg)
+
+---
+
+На графіку це виглядатиме так:
+
+![Graph1](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph1.jpg)
+
+![Graph2]((https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph2.jpg)
+
+Існують точки, особливо на другому графіку, у яких помітно, що наступне значення може бути меншим за попереднє, що обумовлено додатковим навантаженням на обчислювальні ресурси, але в цьому графік іде прямолінійно вгору
+
+---
