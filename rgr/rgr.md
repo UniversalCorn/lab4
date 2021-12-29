@@ -161,7 +161,7 @@ func BenchmarkParser(b *testing.B) {
 
 Діаграма показує взаємодію сутностей в нашій системі між собою 
 
-![Graph4](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab4/photo_2021-12-29_18-14-38.jpg)
+![Graph4](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab4/Parser.png)
 
 
 
