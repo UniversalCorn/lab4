@@ -83,3 +83,87 @@ func BenchmarkPostfixToInfix(b *testing.B) {
 Існують точки у яких помітно, що наступне значення може бути меншим за попереднє, що обумовлено додатковим навантаженням на обчислювальні ресурси, але в цілому графік іде прямолінійно вгору
 
 ---
+
+## 3 робота
+
+Варіант №3: Контекст. Інформаційна система для управління віртуальними
+машинами та дисками. Система дозволяє ініціалізувати віртуальні
+машини та підключати до них довільну кількість дисків для збереження
+даних. Кожен з дисків має свій об’єм. Загальний простір доспуний певній
+машині визначається як сума об’ємів, що надаються кожним з
+підключених дисків.
+Сценарії:
+1. Переглянути список наявних машин. Приклад відповіді:
+[
+ {
+ “id”: 13,
+ “name”: “server-1”,
+ “cpuCount”: 4,
+ “totalDiskSpace”: 31457280
+ }
+]
+Інформація про кожну машину включає її ім’я, кількість наявних
+процесорів та загальний доступний дисковий простір.
+2. Підключити диск до машини, вказавши ідентифікатор диска та
+мишини. Після виконання даної операції, загальний дисковий простір,
+який відображується у полі totalDiskSpace має збільшитися на об’єм
+вказаного диска. 
+
+![Graph2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab3/photo_2021-12-29_18-14-21.jpg)
+
+---
+
+## 4 робота
+
+Приклад коду
+
+```go
+package lab4
+
+import (
+	"fmt"
+	"strings"
+	"testing"
+
+	engine "github.com/UniversalCorn/lab4/commands"
+	parser "github.com/UniversalCorn/lab4/parser"
+)
+
+var cmds engine.Command
+
+func BenchmarkParser(b *testing.B) {
+	const baseLen = 5000
+	for i := 0; i < 20; i++ {
+		l := baseLen * (i + 1)
+
+		input := "print " + strings.Repeat("smthsmthtoprintsmthtoprintsmthtoprint", l)
+
+		b.Run(fmt.Sprintf("len=%d", l), func(b *testing.B) {
+			cmds = parser.Parse(input)
+		})
+	}
+}
+```
+
+Результат виконання benchmark тестів
+
+![Output2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab4/output2.jpg)
+
+---
+
+Графік по точкам 
+
+![Graph3](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab4/graph2.jpg)
+
+Діаграма
+
+![Graph4](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab4/photo_2021-12-29_18-14-38.jpg)
+
+
+
+
+
+
+
+
+
