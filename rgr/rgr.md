@@ -70,15 +70,9 @@ func BenchmarkPostfixToInfix(b *testing.B) {
 
 ---
 
-Тут ми n разів повторюємо початковий рядок, передаючи його до функції перетворення:
-
-![Output1](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/output1.jpg)
-
----
-
 Після запуску бенчмарка отримуємо такі значення:
 
-![Output2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/output2.jpg)
+![Output1](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/output1.jpg)
 
 ---
 
@@ -86,8 +80,6 @@ func BenchmarkPostfixToInfix(b *testing.B) {
 
 ![Graph1](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph1.jpg)
 
-![Graph2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab2/graph2.jpg)
-
-Існують точки, особливо на другому графіку, у яких помітно, що наступне значення може бути меншим за попереднє, що обумовлено додатковим навантаженням на обчислювальні ресурси, але в цілому графік іде прямолінійно вгору
+Існують точки у яких помітно, що наступне значення може бути меншим за попереднє, що обумовлено додатковим навантаженням на обчислювальні ресурси, але в цілому графік іде прямолінійно вгору
 
 ---
