@@ -145,7 +145,7 @@ func BenchmarkParser(b *testing.B) {
 }
 ```
 
-Результат виконання benchmark тестів
+Після запуску бенчмарка отримуємо такі значення:
 
 ![Output2](https://github.com/UniversalCorn/lab4/blob/main/rgr/desc/lab4/output2.jpg)
 
